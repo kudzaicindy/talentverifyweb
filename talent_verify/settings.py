@@ -8,7 +8,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','bb5f91b8ae0d631cf31331fe1009aca
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['talentverifyweb-2.onrender.com', 'localhost', '127.0.0.1']'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
