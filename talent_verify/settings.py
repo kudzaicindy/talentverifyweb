@@ -9,7 +9,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['talentverifyweb-4.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['talentverifyweb-5.onrender.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -113,7 +113,7 @@ SESSION_COOKIE_SECURE = True
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "https://talentverifyweb-4.onrender.com",
+    "https://talentverifyweb-5.onrender.com",
     "http://localhost:3000",
 ]
 CORS_ALLOW_CREDENTIALS = True
@@ -121,7 +121,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_USE_SESSIONS = True
 CSRF_COOKIE_HTTPONLY = True
 
-CSRF_TRUSTED_ORIGINS = ['https://talentverifyweb-4.onrender.com', 'http://localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['https://talentverifyweb-5.onrender.com', 'http://localhost:3000']
 
 CSRF_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_SAMESITE = 'Lax'
