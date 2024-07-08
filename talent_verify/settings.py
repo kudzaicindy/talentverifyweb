@@ -1,15 +1,14 @@
 import os
 from pathlib import Path
 from cryptography.fernet import Fernet
-import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'bb5f91b8ae0d631cf31331fe1009aca16b3c79353ee4f5052fa4d724365f8356')
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['talentverifyweb-5.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['talentverifyweb5.onrender.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -26,7 +25,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this for static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,7 +55,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'talent_verify.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600)
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'talentverify'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'kudzai30'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -75,8 +80,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -84,11 +87,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     ]
 }
 
@@ -101,32 +106,33 @@ LOGGING = {
         },
     },
     'loggers': {
-        'django': {
+        'django.request': {
             'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+            'level': 'DEBUG',
+            'propagate': True,
         },
     },
 }
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_HTTPONLY = True
+CSRF_USE_SESSIONS = True
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
 
-CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "https://talentverifyweb-5.onrender.com",
     "http://localhost:3000",
+    "https://talentverifyweb5.onrender.com",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_USE_SESSIONS = True
-CSRF_COOKIE_HTTPONLY = True
-
-CSRF_TRUSTED_ORIGINS = ['https://talentverifyweb-5.onrender.com', 'http://localhost:3000']
-
-CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'https://talentverifyweb5.onrender.com"
+]
 
 CSRF_COOKIE_NAME = 'csrftoken'
 CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
 
-ENCRYPTION_KEY = os.environ['ENCRYPTION_KEY']Generate this securely
+ENCRYPTION_KEY = os.environ.get('ENCRYPTION_KEY', 'PuK8qBO548l9PZB0-gUMQ-nEJhciBIUI96D_0C30HGs=')
