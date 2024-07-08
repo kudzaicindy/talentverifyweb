@@ -129,7 +129,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
-    'https://talentverifyweb5.onrender.com"
+    'https://talentverifyweb5.onrender.com'
 ]
 
 CSRF_COOKIE_NAME = 'csrftoken'
