@@ -6,7 +6,7 @@ set -o errexit
 pip install -r requirements.txt
 
 # Install Node.js dependencies
-cd frontend
+cd src
 npm install
 
 # Build React app
