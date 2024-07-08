@@ -1,0 +1,9 @@
+<html>
+    <h2>Add Employment History for {{ employee.first_name }} {{ employee.last_name }}</h2>
+<form method=”post”>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add History</button>
+</form>
+
+</html>

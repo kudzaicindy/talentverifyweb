@@ -1,0 +1,12 @@
+ "id": 5,
+        "user": 1,
+        "name": "Cynthia",
+        "company": 1,
+        "department": "Hr",
+        "employee_id": "R89753475G",
+        "role": "Enrolling new employees",
+        "start_date": "2014-05-05",
+        "end_date": "2026-05-05",
+        "phone_number": "0712345678",
+        "email": "kcpemhiwa@gmail.com",
+        "position": "Hr Intern"

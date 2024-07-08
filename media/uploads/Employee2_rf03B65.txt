@@ -1,0 +1,41 @@
+ [
+  {
+    "user": 1,
+    "employee_id": "EMP001",
+    "name": "John Doe",
+    "company": 1,
+    "department": "IT",
+    "role": "Software Developer",
+    "start_date": "2023-01-15",
+    "end_date": null,
+    "phone_number": "+1234567890",
+    "email": "john.doe@example.com",
+    "position": "Senior Developer"
+  },
+  {
+    "user": 2,
+    "employee_id": "EMP002",
+    "name": "Jane Smith",
+    "company": 1,
+    "department": "HR",
+    "role": "HR Manager",
+    "start_date": "2022-05-01",
+    "end_date": null,
+    "phone_number": "+1987654321",
+    "email": "jane.smith@example.com",
+    "position": "Manager"
+  },
+  {
+    "user": 2,
+    "employee_id": "EMP003",
+    "name": "Bob Johnson",
+    "company": 2,
+    "department": "Marketing",
+    "role": "Marketing Specialist",
+    "start_date": "2023-03-10",
+    "end_date": "2024-03-10",
+    "phone_number": "+1122334455",
+    "email": "bob.johnson@example.com",
+    "position": "Specialist"
+  }
+]
